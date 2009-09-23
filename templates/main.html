@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>Tegneserier</title>
+	<style type="text/css">	
+    body {
+      background-color: #111;
+    }
+    
+    img {
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #555;
+      padding: 10px;
+      background-color: #222;
+    }
+	</style>
+</head>
+
+<body>
+	{% for comic in comics  %}
+		<img src="/comics/{{ comic.key }}" title="{{ comic.name }}" alt="{{ comic.name }}" />
+	{% endfor %}
+</body>
+</html>
