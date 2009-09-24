@@ -6,7 +6,7 @@ runtime: python
 handlers:
 - url: /comic/.*
   script: handlers/picturehandler.py
-- url: /create
-  script: handlers/createhandler.py
+- url: /setup
+  script: handlers/setuphandler.py
 - url: .*
   script: handlers/mainhandler.py
