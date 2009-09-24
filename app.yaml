@@ -4,5 +4,9 @@ api_version: 1
 runtime: python
 
 handlers:
+- url: /comic/.*
+  script: handlers/picturehandler.py
+- url: /create
+  script: handlers/createhandler.py
 - url: .*
-  script: main.py
+  script: handlers/mainhandler.py

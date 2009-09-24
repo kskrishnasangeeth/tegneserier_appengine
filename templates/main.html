@@ -21,8 +21,8 @@
 </head>
 
 <body>
-	{% for comic in comics  %}
-		<img src="/comics/{{ comic.key }}" title="{{ comic.name }}" alt="{{ comic.name }}" />
+	{% for picture in pictures  %}
+		<img src="/comic/{{ picture.key }}" title="{{ picture.comic.name }}" alt="{{ picture.comic.name }}" />
 	{% endfor %}
 </body>
 </html>
