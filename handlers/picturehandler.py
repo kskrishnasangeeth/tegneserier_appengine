@@ -7,6 +7,9 @@ class PictureHandler(webapp.RequestHandler):
 	def get(self):
 		key = self.request.path.split('/')[-1]
 		picture = Picture.get(key)
+		if not picture:
+			self.error(404)
+			return
 		self.response.headers['Content-Type'] = picture.content_type.__str__()
 		self.response.out.write(picture.picture)
 
