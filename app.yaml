@@ -8,5 +8,7 @@ handlers:
   script: handlers/picturehandler.py
 - url: /setup
   script: handlers/setuphandler.py
+- url: /test
+  script: handlers/testhandler.py
 - url: .*
   script: handlers/mainhandler.py
