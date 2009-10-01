@@ -1,13 +1,12 @@
 import wsgiref.handlers
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
-from crawlers.comics.bizarro3 import Bizarro3
+from crawlers.comics.bizarro1 import Bizarro1
 
 class TestHandler(webapp.RequestHandler):
 	def get(self):
-		bizarro = Bizarro3()
-		self.response.headers["Content-type"] = "image/gif"
-		self.response.out.write(urlfetch.fetch(bizarro.url, headers = bizarro.headers).content)
+		bizarro = Bizarro1()
+		self.response.out.write(bizarro.url)
 
 def main():
 	app = webapp.WSGIApplication([
