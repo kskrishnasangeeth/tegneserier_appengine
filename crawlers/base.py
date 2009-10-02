@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
 class BaseComicCrawler(object):
-	timezone = 0
+	timezone = 1
 	headers = {}
 	def __init__(self, key):
 		self.key = key
