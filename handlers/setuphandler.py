@@ -8,7 +8,7 @@ from models.picture import Picture
 
 class SetupHandler(webapp.RequestHandler):
 	def get(self):
-		norske = ['Bizarro - ba.no', 'Bizarro - it-content.com', 'Nemi - bt.no', 'Nemi - db.no', 'Nemi - adressa.no', 'Rutetid - msn.no', 'Six Chix - it-content.com']
+		norske = ['Bizarro - ba.no', 'Bizarro - it-content.com', 'Donald', 'Nemi - bt.no', 'Nemi - db.no', 'Nemi - adressa.no', 'Rutetid - msn.no', 'Six Chix - it-content.com']
 		utenlandske = ['Bizarro - kingfeatures.com', 'Joy of Tech - geekculture.com', 'Tom Toles - washingtonpost.com', 'Wulffmorgenthaler - wulffmorgenthaler.com', 'xkcd - xkcd.com']
 
 		counter = 1
