@@ -15,7 +15,7 @@ class PictureHandler(webapp.RequestHandler):
 
 def main():
 	app = webapp.WSGIApplication([
-	(r'.*', PictureHandler)], debug=True)
+	(r'.*', PictureHandler)])
 	wsgiref.handlers.CGIHandler().run(app)
 
 if __name__ == "__main__":

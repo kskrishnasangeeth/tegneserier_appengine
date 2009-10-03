@@ -10,7 +10,7 @@ class TestHandler(webapp.RequestHandler):
 
 def main():
 	app = webapp.WSGIApplication([
-	(r'.*', TestHandler)], debug=True)
+	(r'.*', TestHandler)])
 	wsgiref.handlers.CGIHandler().run(app)
 
 if __name__ == "__main__":

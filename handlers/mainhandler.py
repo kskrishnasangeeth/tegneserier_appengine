@@ -21,7 +21,7 @@ class TextHandler(webapp.RequestHandler):
 			self.response.out.write("%s;%s%s;%s\n" % (picture.name, "http://localhost:8080/comic/", picture.key(), picture.group))
 
 def main():
-	app = webapp.WSGIApplication([(r'.*\.txt', TextHandler),(r'.*', MainHandler)], debug=True)
+	app = webapp.WSGIApplication([(r'.*\.txt', TextHandler),(r'.*', MainHandler)])
 	wsgiref.handlers.CGIHandler().run(app)
 
 if __name__ == "__main__":

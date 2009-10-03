@@ -55,7 +55,7 @@ class UpdateHandler(webapp.RequestHandler):
 
 def main():
 	app = webapp.WSGIApplication([
-	(r'.*', UpdateHandler)], debug=True)
+	(r'.*', UpdateHandler)])
 	wsgiref.handlers.CGIHandler().run(app)
 
 if __name__ == "__main__":
