@@ -8,5 +8,6 @@ handlers:
   script: handlers/picturehandler.py
 - url: /update
   script: handlers/updatehandler.py
+  login: admin
 - url: .*
   script: handlers/mainhandler.py
