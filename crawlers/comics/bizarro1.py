@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 class Bizarro1(BaseComicCrawler):
 	def __init__(self):
-		super(Bizarro1, self).__init__('ag9taW5ldGVnbmVzZXJpZXJyCwsSBUNvbWljGAEM')
+		super(Bizarro1, self).__init__('Bizarro', 'felles.ba.no', 10, 'Norske')
 		self.url = "http://felles.ba.no/bastripen/%s" % (self._imagelink())
 	
 	def _imagelink(self):

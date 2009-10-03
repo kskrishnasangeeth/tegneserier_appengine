@@ -22,7 +22,7 @@
 
 <body>
 	{% for picture in pictures  %}
-		<img src="/comic/{{ picture.key }}" title="{{ picture.comic.name }}" alt="{{ picture.comic.name }}" />
+		<img src="/comic/{{ picture.key }}" title="{{ picture.name }} - {{ picture.host }}" alt="{{ picture.name }}" />
 	{% endfor %}
 </body>
 </html>
