@@ -1,21 +1,21 @@
 import wsgiref.handlers
-from google.appengine.ext 							import webapp, db
-from datetime														import date
-from models.picture											import Picture
+from google.appengine.ext               import webapp, db
+from datetime                           import date
+from models.picture                     import Picture
 
-from crawlers.comics.bizarro1  					import Bizarro1
-from crawlers.comics.bizarro2  					import Bizarro2
-from crawlers.comics.bizarro3  					import Bizarro3
-from crawlers.comics.donald    					import Donald
-from crawlers.comics.joyoftech 					import JoyOfTech
-from crawlers.comics.nemi1  	 	 				import Nemi1
-from crawlers.comics.nemi2  						import Nemi2
-from crawlers.comics.nemi3  						import Nemi3
-from crawlers.comics.rutetid					  import Rutetid
-from crawlers.comics.sixchix						import SixChix
-from crawlers.comics.tomtoles						import TomToles
+from crawlers.comics.bizarro1           import Bizarro1
+from crawlers.comics.bizarro2           import Bizarro2
+from crawlers.comics.bizarro3           import Bizarro3
+from crawlers.comics.donald             import Donald
+from crawlers.comics.joyoftech          import JoyOfTech
+from crawlers.comics.nemi1              import Nemi1
+from crawlers.comics.nemi2              import Nemi2
+from crawlers.comics.nemi3              import Nemi3
+from crawlers.comics.rutetid            import Rutetid
+from crawlers.comics.sixchix            import SixChix
+from crawlers.comics.tomtoles           import TomToles
 from crawlers.comics.wulffmorgenthaler  import WulffmorgentHaler
-from crawlers.comics.xkcd  							import Xkcd
+from crawlers.comics.xkcd               import Xkcd
 
 class UpdateHandler(webapp.RequestHandler):
 	def get(self):
