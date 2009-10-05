@@ -16,4 +16,4 @@ class BaseComicCrawler(object):
 	
 	@property
 	def date(self):
-		return datetime.now() + timedelta(hours = 9)
+		return datetime.now() + timedelta(hours = 2)
