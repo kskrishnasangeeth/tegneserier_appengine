@@ -31,10 +31,14 @@ class UpdateHandler(webapp.RequestHandler):
 				if not content_type.startswith("image/"):
 					continue
 				
-				already_exists = db.GqlQuery('SELECT * FROM Picture WHERE date = :1 AND url = :2', date.today(), comic.url).count() > 0
+				rows = db.GqlQuery('SELECT * FROM Picture WHERE date = :1 and name = :2 and host = :3', date.today(), comic.name, comic.host)
 				
-				if already_exists:
-					continue
+				if rows.count() > 0:
+					if rows[0].picture == picture:
+						continue
+					else:
+						for row in rows:
+							row.delete()
 				
 				
 				db_object = Picture(
@@ -55,7 +59,7 @@ class UpdateHandler(webapp.RequestHandler):
 
 def main():
 	app = webapp.WSGIApplication([
-	(r'.*', UpdateHandler)])
+	(r'.*', UpdateHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 if __name__ == "__main__":
