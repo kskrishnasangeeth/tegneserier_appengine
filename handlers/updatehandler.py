@@ -1,5 +1,6 @@
 import wsgiref.handlers
 from google.appengine.ext               import webapp, db
+from google.appengine.api.urlfetch      import DownloadError
 from datetime                           import date
 from models.picture                     import Picture
 
@@ -52,7 +53,9 @@ class UpdateHandler(webapp.RequestHandler):
 				sort_order=comic.sort_order)
 				
 				db_object.put()
-			except TypeError, te:
+			except TypeError:
+				continue
+			except DownloadError:
 				continue
 			except Exception, e:
 				raise e
