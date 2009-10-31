@@ -1,6 +1,8 @@
 import wsgiref.handlers
+import logging
 from google.appengine.ext               import webapp, db
 from google.appengine.api.urlfetch      import DownloadError
+from google.appengine.api.labs          import taskqueue
 from datetime                           import date
 from models.picture                     import Picture
 
@@ -19,46 +21,48 @@ from crawlers.comics.wulffmorgenthaler  import WulffmorgentHaler
 from crawlers.comics.xkcd               import Xkcd
 
 class UpdateHandler(webapp.RequestHandler):
+	comics_classes = {'Bizarro1': Bizarro1,'Bizarro2': Bizarro2,'Bizarro3': Bizarro3,'Donald': Donald,'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3,'Rutetid': Rutetid,'SixChix': SixChix,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
 	def get(self):
-		comics_classes = [Bizarro1, Bizarro2, Bizarro3, Donald, JoyOfTech, Nemi1, Nemi2, Nemi3, Rutetid, SixChix, TomToles, WulffmorgentHaler, Xkcd]
+		for k,v in self.comics_classes.iteritems():
+			taskqueue.add(url='/update', params={'key': k}, method='POST')
 		
-		for comic_class in comics_classes:
-			try:
-				comic = comic_class()
-				response = comic.fetch()
-				content_type = response.headers["content-type"]
-				picture = response.content
+	def post(self):
+		try:
+			logging.info('Updating started - %s' % self.request.get('key'))
+			comic = self.comics_classes[self.request.get('key')]()
+			response = comic.fetch()
+			content_type = response.headers["content-type"]
+			picture = response.content
 
-				if not content_type.startswith("image/"):
-					continue
-				
-				rows = db.GqlQuery('SELECT * FROM Picture WHERE date = :1 and name = :2 and host = :3', date.today(), comic.name, comic.host)
-				
-				if rows.count() > 0:
-					if rows[0].picture == picture:
-						continue
-					else:
-						for row in rows:
-							row.delete()
-				
-				
-				db_object = Picture(
-				name=comic.name,
-				host=comic.host,
-				group=comic.group,
-				url=comic.url,
-				picture=picture,
-				content_type=content_type,
-				date=date.today(),
-				sort_order=comic.sort_order)
-				
-				db_object.put()
-			except TypeError:
-				continue
-			except DownloadError:
-				continue
-			except Exception, e:
-				raise e
+			if not content_type.startswith("image/"):
+				logging.info('Content-type is not an image')
+				return
+			
+			rows = db.GqlQuery('SELECT * FROM Picture WHERE date = :1 and name = :2 and host = :3', date.today(), comic.name, comic.host)
+			
+			if rows.count() > 0:
+				if rows[0].picture == picture:
+					return
+				else:
+					for row in rows:
+						row.delete()
+			
+			
+			db_object = Picture(
+			name=comic.name,
+			host=comic.host,
+			group=comic.group,
+			url=comic.url,
+			picture=picture,
+			content_type=content_type,
+			date=date.today(),
+			sort_order=comic.sort_order)
+			
+			logging.info('Saving new picture')
+			
+			db_object.put()
+		except Exception, e:
+			logging.error(e)
 
 def main():
 	app = webapp.WSGIApplication([
