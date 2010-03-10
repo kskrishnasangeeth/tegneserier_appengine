@@ -18,7 +18,7 @@ class TextHandler(webapp.RequestHandler):
 	def get(self):
 		pictures = db.GqlQuery('SELECT * FROM Picture WHERE date = :1 ORDER BY sort_order', date.today())
 		for picture in pictures:
-			self.response.out.write("%s;%s%s;%s\n" % (picture.name, "http://minetegneserier.appspot.com/comic/", picture.key(), picture.group))
+			self.response.out.write("%s;%s%s;%s;%s\n" % (picture.name, "http://minetegneserier.appspot.com/comic/", picture.key(), picture.group, picture.host))
 
 def main():
 	app = webapp.WSGIApplication([(r'.*\.txt', TextHandler),(r'.*', MainHandler)])
