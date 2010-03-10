@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 class Xkcd(BaseComicCrawler):
 	def __init__(self):
-		super(Xkcd, self).__init__('xkcd', 'imgs.xkcd.com', 120, 'Utenlandske')
+		super(Xkcd, self).__init__('xkcd', 'imgs.xkcd.com', 140, 'Utenlandske')
 		self.url = self._imagelink()
 	
 	def _imagelink(self):

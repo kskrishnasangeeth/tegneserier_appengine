@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 class WulffmorgentHaler(BaseComicCrawler):
 	def __init__(self):
-		super(WulffmorgentHaler, self).__init__('WulffmorgentHaler', 'wulffmorgenthaler.com', 110, 'Utenlandske')
+		super(WulffmorgentHaler, self).__init__('WulffmorgentHaler', 'wulffmorgenthaler.com', 130, 'Utenlandske')
 		self.url = "http://www.wulffmorgenthaler.com/%s" % (self._imagelink())
 	
 	def _imagelink(self):
