@@ -23,7 +23,7 @@ from crawlers.comics.wulffmorgenthaler  import WulffmorgentHaler
 from crawlers.comics.xkcd               import Xkcd
 
 class UpdateHandler(webapp.RequestHandler):
-	comics_classes = {'Bizarro1': Bizarro1,'Bizarro2': Bizarro2,'Bizarro3': Bizarro3, 'Dennis': Dennis, 'Donald': Donald,'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3,'Rutetid': Rutetid,'SixChix': SixChix,'SixChix2': SixChix2,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
+	comics_classes = {'Bizarro2': Bizarro2,'Bizarro3': Bizarro3, 'Dennis': Dennis, 'Donald': Donald,'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3,'Rutetid': Rutetid,'SixChix': SixChix,'SixChix2': SixChix2,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
 	def get(self):
 		for k,v in self.comics_classes.iteritems():
 			taskqueue.add(url='/update', params={'key': k}, method='POST')
