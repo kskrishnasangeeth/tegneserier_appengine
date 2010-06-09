@@ -6,9 +6,9 @@ from google.appengine.api.labs          import taskqueue
 from datetime                           import date
 from models.picture                     import Picture
 
-from crawlers.comics.bizarro1           import Bizarro1
 from crawlers.comics.bizarro2           import Bizarro2
 from crawlers.comics.bizarro3           import Bizarro3
+from crawlers.comics.cyanidehappiness   import CyanideHappiness
 from crawlers.comics.dennis             import Dennis
 from crawlers.comics.donald             import Donald
 from crawlers.comics.joyoftech          import JoyOfTech
@@ -23,7 +23,7 @@ from crawlers.comics.wulffmorgenthaler  import WulffmorgentHaler
 from crawlers.comics.xkcd               import Xkcd
 
 class UpdateHandler(webapp.RequestHandler):
-	comics_classes = {'Bizarro2': Bizarro2,'Bizarro3': Bizarro3, 'Dennis': Dennis, 'Donald': Donald,'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3,'Rutetid': Rutetid,'SixChix': SixChix,'SixChix2': SixChix2,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
+	comics_classes = {'Bizarro2': Bizarro2,'Bizarro3': Bizarro3, 'CyanideHappiness':CyanideHappiness, 'Dennis': Dennis, 'Donald': Donald,'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3,'Rutetid': Rutetid,'SixChix': SixChix,'SixChix2': SixChix2,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
 	def get(self):
 		for k,v in self.comics_classes.iteritems():
 			taskqueue.add(url='/update', params={'key': k}, method='POST')
