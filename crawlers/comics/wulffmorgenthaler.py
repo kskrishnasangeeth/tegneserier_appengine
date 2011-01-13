@@ -5,9 +5,11 @@ from BeautifulSoup import BeautifulSoup
 class WulffmorgentHaler(BaseComicCrawler):
 	def __init__(self):
 		super(WulffmorgentHaler, self).__init__('WulffmorgentHaler', 'wulffmorgenthaler.com', 130, 'Utenlandske')
-		self.url = "http://www.wulffmorgenthaler.com/%s" % (self._imagelink())
-	
+		self.url = "http://www.wulffmorgenthaler.com%s" % (self._imagelink())
+
 	def _imagelink(self):
 		content = urlfetch.fetch('http://www.wulffmorgenthaler.com/').content
-		soup = BeautifulSoup(content)		
-		return soup.find('img', {'id': 'ctl00_content_Strip1_imgStrip'})['src']
+		soup = BeautifulSoup(content)
+		for img in soup.findAll('img'):
+			if img["src"].startswith("/strip/"):
+				return img["src"]
