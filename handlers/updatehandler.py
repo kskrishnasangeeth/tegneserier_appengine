@@ -11,6 +11,7 @@ from crawlers.comics.bizarro3           import Bizarro3
 from crawlers.comics.cyanidehappiness   import CyanideHappiness
 from crawlers.comics.dennis             import Dennis
 from crawlers.comics.fagprat            import Fagprat
+from crawlers.comics.faktafraverden     import FaktaFraVerden
 from crawlers.comics.joyoftech          import JoyOfTech
 from crawlers.comics.nemi1              import Nemi1
 from crawlers.comics.nemi2              import Nemi2
@@ -22,7 +23,7 @@ from crawlers.comics.wulffmorgenthaler  import WulffmorgentHaler
 from crawlers.comics.xkcd               import Xkcd
 
 class UpdateHandler(webapp.RequestHandler):
-	comics_classes = {'Bizarro2': Bizarro2,'Bizarro3': Bizarro3, 'CyanideHappiness':CyanideHappiness, 'Dennis': Dennis, 'Fagprat': Fagprat, 'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3, 'SixChix': SixChix,'SixChix2': SixChix2,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
+	comics_classes = {'Bizarro2': Bizarro2,'Bizarro3': Bizarro3, 'CyanideHappiness':CyanideHappiness, 'Dennis': Dennis, 'Fagprat': Fagprat, 'FaktaFraVerden': FaktaFraVerden, 'JoyOfTech': JoyOfTech,'Nemi1': Nemi1,'Nemi2': Nemi2,'Nemi3': Nemi3, 'SixChix': SixChix,'SixChix2': SixChix2,'TomToles': TomToles,'WulffmorgentHaler': WulffmorgentHaler,'Xkcd': Xkcd}
 	def get(self):
 		for k,v in self.comics_classes.iteritems():
 			taskqueue.add(url='/update', params={'key': k}, method='POST')
