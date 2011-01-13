@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 class CyanideHappiness(BaseComicCrawler):
 	def __init__(self):
-		super(CyanideHappiness, self).__init__('Cyanide & Happiness', 'explosm.net', 81, 'Utenlandske')
+		super(CyanideHappiness, self).__init__('Cyanide & Happiness', 'explosm.net', 87, 'Utenlandske')
 		self.url = self._imagelink()
 	
 	def _imagelink(self):
